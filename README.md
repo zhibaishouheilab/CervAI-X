@@ -1,4 +1,15 @@
 # CervAI-X: Cervical AI (E)Xpert System
+**An Expert-Knowledge Driven Diagnostic Framework for Comprehensive Cervical Spondylosis Assessment**  
+## 🎯 Clinical Value Proposition  
+CervAI-X is an AI-powered diagnostic system that automates quantitative evaluation of cervical spondylosis through five clinically validated indicators:  
+1. **C2-C7 Cobb Angle Measurement**  
+2. **Disc Herniation Localization & Severity Grading**  
+3. **Maximum Spinal Cord Compression (MSCC) Quantification**  
+4. **Modified K-Line Status Assessment**  
+5. **T2-Hyperintensity Detection with Novel Biomarkers**
+
+Validated on 960 clinical MRI cases, it achieves **expert-level precision** (MAE: 2.44°±1.93° for Cobb angle, 3.60%±2.37% for MSCC) while reducing interpretation time by 85% compared to manual analysis.
+
 The workflow of the complete CervAI-X includes the segmentation model (PG-nnUNet) and the expert-based diagnosis framework, as illustrated as follows:
 ![Workflow](images/workflow.png)
 
@@ -70,6 +81,13 @@ python herniation_labeling.py \
 **Module Function**:
 This module processes MRI images and their corresponding segmentation labels to generate middle layer images, calculate the maximum MSCC (maximum spinal cord compression) for each segment, and save the results in an Excel file.
 
+**Formula**:
+$$
+\text{MSCC} = \left(1 - \frac{D_i}{\frac{D_a + D_b}{2}}\right) \times 100\%
+$$
+- $D_i$: Narrowest diameter at herniation level
+- $D_a/D_b$: Normal diameters above/below compression
+
 **Usage**:
 ```bash
 python MSCC.py \
@@ -126,6 +144,21 @@ python Cobb_C27.py \
 **Module Function**:
 This module consists of three main steps: spinal cord segmentation, `T2 − SI` curve plotting, and specific indicators computation. 
 
+**Quantitative Indices**:
+- **T2 Myelopathy Index (T2-MI)**:
+$$
+T2\text{-}MI = \frac{T2\text{-}SI_{max} - T2\text{-}SI_{min}}{T2\text{-}SI_{mean}}
+$$
+
+- **Relative Signal Change Index (RSCI)**:
+$$
+RSCI_i = \frac{3 \times T2\text{-}MI_i}{\sum_{k=i-1}^{i+1} T2\text{-}MI_k}
+$$
+
+**Diagnostic Thresholds**:
+- RSCI ≥ 1.2
+- T2-MI ≥ 23.7 (Youden Index = 0.807)
+
 **Usage**:
 ```bash
 python T2_highsignal.py \
@@ -137,10 +170,6 @@ python T2_highsignal.py \
 
 ---
 
-## 📊 Results
-
-
-
 ## 📧 Contact
 If you have any questions about the codes or paper, please let us know via [zhi-bai-shou-hei@sjtu.edu.cn](zhi-bai-shou-hei@sjtu.edu.cn).
 
@@ -149,6 +178,9 @@ If you have any questions about the codes or paper, please let us know via [zhi-
 ## 🙇‍ Acknowledgment
 - Thank Febian's [nnUnet](https://github.com/MIC-DKFZ/nnUNet).
 
+---
+
+
 ## 📄 License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+This implementation is for research purposes only. Clinical use requires additional certification. All rights reserved by Renji Hospital and SJTU Med-X Institute.

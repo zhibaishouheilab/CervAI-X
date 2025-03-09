@@ -198,9 +198,9 @@ def process_patient_C27(img_dir, label_dir, save_dir, if_show):
     
 def main():
     parser = argparse.ArgumentParser(description='处理模型预测结果并生成诊断图')
-    parser.add_argument('main_folder', type=str, help='包含模型文件夹的根目录路径')
-    parser.add_argument('save_folder', type=str, help='保存结果的根目录路径')
-    parser.add_argument('if_show', type=bool,default=False, help='是否显示图像')
+    parser.add_argument('--main_folder', type=str, help='包含模型文件夹的根目录路径')
+    parser.add_argument('--save_folder', type=str, help='保存结果的根目录路径')
+    parser.add_argument('--if_show', type=bool,default=False, help='是否显示图像')
     args = parser.parse_args()
     
     img_path = os.path.join(args.main_folder, 'img')

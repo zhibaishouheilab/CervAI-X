@@ -172,8 +172,8 @@ def diag_allslice(mask_path, type, output_path):
     
 def main():
     parser = argparse.ArgumentParser(description='Segment protrusion')
-    parser.add_argument('main_folder', type=str, help='包含模型文件夹的根目录路径')
-    parser.add_argument('save_folder', type=str, help='保存结果的根目录路径')
+    parser.add_argument('--main_folder', type=str, help='包含模型文件夹的根目录路径')
+    parser.add_argument('--save_folder', type=str, help='保存结果的根目录路径')
     args = parser.parse_args()
     
     main_folder = args.main_folder

@@ -301,8 +301,8 @@ def process_files(mr_folder, seg_folder, output_folder, output_excel_file):
     
 def main():
     parser = argparse.ArgumentParser(description='处理模型预测结果并生成诊断图')
-    parser.add_argument('main_folder', type=str, help='包含模型文件夹的根目录路径')
-    parser.add_argument('save_folder', type=str, help='保存结果的根目录路径')
+    parser.add_argument('--main_folder', type=str, help='包含模型文件夹的根目录路径')
+    parser.add_argument('--save_folder', type=str, help='保存结果的根目录路径')
     args = parser.parse_args()
     
     mr_dir = os.path.join(args.main_folder, 'img')

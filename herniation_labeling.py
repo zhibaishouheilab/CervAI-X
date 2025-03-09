@@ -1,7 +1,9 @@
 """
 MRI Segmentation Analysis Tool
 
-This tool processes MRI (Magnetic Resonance Imaging) data and corresponding segmentation masks to automatically detect and annotate protruded regions (e.g., intervertebral disc herniation). It generates visualized results with arrow markers and anatomical labels, saved as PNG files with transparent backgrounds.
+This tool processes MRI (Magnetic Resonance Imaging) data and corresponding segmentation masks 
+to automatically detect and annotate protruded regions (e.g., intervertebral disc herniation). 
+It generates visualized results with arrow markers and anatomical labels, saved as PNG files with transparent backgrounds.
 
 Key Features:
 1. Connected Component Analysis & Filtering:
@@ -161,8 +163,8 @@ def process_images(mr_dir, seg_dir, save_dir, arrow_label, text_label, ivd_label
 
 def main():
     parser = argparse.ArgumentParser(description='处理模型预测结果并生成诊断图')
-    parser.add_argument('main_folder', type=str, help='包含模型文件夹的根目录路径')
-    parser.add_argument('save_folder', type=str, help='保存结果的根目录路径')
+    parser.add_argument('--main_folder', type=str, help='包含模型文件夹的根目录路径')
+    parser.add_argument('--save_folder', type=str, help='保存结果的根目录路径')
     parser.add_argument('--arrow_label', type=int, default=5, help='突出部分的标签值')
     parser.add_argument('--text_label', type=int, default=2, help='解剖结构的标签值')
     parser.add_argument('--ivd_label', type=int, default=1, help='椎间盘的标签值')

@@ -21,7 +21,7 @@ The workflow of the complete CervAI-X includes the segmentation model (PG-nnUNet
   - 3: Spinal cord (SC)
   - 4: Cerebrospinal fluid (CSF)
 
-**Note**: You have to segment these anatomies firstly. Refer to [nnUnet](https://github.com/MIC-DKFZ/nnUNet) to obtain the usage of nnU-Net. We will release our PG-nnUNet later, which is modified nnUNet for segmenting cervical spondylosis images.
+**Note**: You have to segment these anatomies firstly. Refer to [nnUnet](https://github.com/MIC-DKFZ/nnUNet) to obtain the usage of nnU-Net. We also release our PG-nnUNet (based on nnUNet v1), which is modified nnUNet for segmenting cervical spondylosis images. The details can be found in our paper below. The trained weights (including both PG-nnUNet and nnUNet v2) can be found: https://huggingface.co/ZhangqiSJTU/CervAI-X. The inference process is consistent with [nnUnet](https://github.com/MIC-DKFZ/nnUNet).
 
 ## Dataet Structure
 ```
@@ -45,7 +45,7 @@ The workflow of the complete CervAI-X includes the segmentation model (PG-nnUNet
 
 ### 1. Protrusion Analysis & Annotation
 **Module Function**:
-This module first applied `seg_protrude.py` extracts the segmentation of IVD protrusions and saves the results in the output path. Then `herniation_labeling.py` automatically detects and annotates protruded regions.
+This module first applied `dagnosis/seg_protrude.py` extracts the segmentation of IVD protrusions and saves the results in the output path. Then `./dagnosis/herniation_labeling.py` automatically detects and annotates protruded regions.
 
 **Key Features**:
 1. Connected Component Analysis & Filtering:
@@ -95,7 +95,7 @@ python MSCC.py \
   --save_folder ./dataset/save_folder \
 ```
 
-**Note**: You have to run `seg_protrude.py` to obtain the `pred_protrude` folder firstly. The `pred_protrude` folder should in the the same root path with the `img` folder.
+**Note**: You have to run `dagnosis/seg_protrude.py` to obtain the `pred_protrude` folder firstly. The `pred_protrude` folder should in the the same root path with the `img` folder.
 
 **Outputs**:
 - Middle layer images with lines drawn on them (saved as .png files).
@@ -113,7 +113,7 @@ python Kline.py \
   --save_folder ./dataset/save_folder \
 ```
 
-**Note**: You have to run `seg_protrude.py` to obtain the `pred_protrude` folder firstly. The `pred_protrude` folder should in the the same root path with the `img` folder.
+**Note**: You have to run `dagnosis/seg_protrude.py` to obtain the `pred_protrude` folder firstly. The `pred_protrude` folder should in the the same root path with the `img` folder.
 
 
 **Outputs**:
@@ -138,7 +138,7 @@ python Cobb_C27.py \
   --if_show False
 ```
 
-**Note**: You have to run `seg_protrude.py` to obtain the `pred_protrude` folder firstly. The `pred_protrude` folder should in the the same root path with the `img` folder.
+**Note**: You have to run `dagnosis/seg_protrude.py` to obtain the `pred_protrude` folder firstly. The `pred_protrude` folder should in the the same root path with the `img` folder.
 
 ### 5. Detection of T2 hyperintensity
 **Module Function**:
@@ -166,7 +166,7 @@ python T2_highsignal.py \
   --save_folder ./dataset/save_folder \
 ```
 
-**Note**: You have to run `seg_protrude.py` to obtain the `pred_protrude` folder firstly. The `pred_protrude` folder should in the the same root path with the `img` folder.
+**Note**: You have to run `dagnosis/seg_protrude.py` to obtain the `pred_protrude` folder firstly. The `pred_protrude` folder should in the the same root path with the `img` folder.
 
 ---
 

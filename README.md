@@ -40,6 +40,8 @@ The workflow of the complete CervAI-X includes the segmentation model (PG-nnUNet
 
 ---
 
+**Note**: You can find examples (including MRI images and corresponding annotations in .nii.gz format) in the https://huggingface.co/ZhangqiSJTU/CervAI-X. These examples can be directly used in the diagnosis validation.
+
 ## 🛠 Core Modules
 **Note**: This is the brief introduction to the diagnosis modules of CervAI-X, not including segmentation (PG-nnUNet). ![diagnosis](images/diagnosis.png)
 
